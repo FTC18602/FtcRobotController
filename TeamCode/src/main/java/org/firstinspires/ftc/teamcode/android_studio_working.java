@@ -18,8 +18,8 @@ public class android_studio_working extends LinearOpMode {
     private DcMotor back_left_port_3;
     private DcMotor back_right_port_1;
     private DcMotor front_right_port_2;
-    private Servo claw;
-    private DcMotor slide1;
+    //private Servo claw;
+    //private DcMotor slide1;
     private DcMotor front_left_port_0;
 
     double drive_mode;
@@ -27,7 +27,7 @@ public class android_studio_working extends LinearOpMode {
     int Odometry_right;
     int Odometry_back;
     boolean telemtoggle;
-    cOdometry oRobotPosition;
+    //cOdometry oRobotPosition;
 
     /**
      * Describe this function...
@@ -46,23 +46,23 @@ public class android_studio_working extends LinearOpMode {
         back_left_port_3 = hardwareMap.get(DcMotor.class, "back_left_port_3");
         back_right_port_1 = hardwareMap.get(DcMotor.class, "back_right_port_1");
         front_right_port_2 = hardwareMap.get(DcMotor.class, "front_right_port_2");
-        claw = hardwareMap.get(Servo.class, "claw");
-        slide1 = hardwareMap.get(DcMotor.class, "slide1");
+        //claw = hardwareMap.get(Servo.class, "claw");
+        //slide1 = hardwareMap.get(DcMotor.class, "slide1");
         front_left_port_0 = hardwareMap.get(DcMotor.class, "front_left_port_0");
 
-        oRobotPosition = new cOdometry();
-        oRobotPosition.Init(back_left_port_3.getCurrentPosition(), back_right_port_1.getCurrentPosition(), front_right_port_2.getCurrentPosition());
+        //oRobotPosition = new cOdometry();
+        //oRobotPosition.Init(back_left_port_3.getCurrentPosition(), back_right_port_1.getCurrentPosition(), front_right_port_2.getCurrentPosition());
 
         initialization();
         waitForStart();
         if (opModeIsActive()) {
             while (opModeIsActive()) {
-                oRobotPosition.Run(back_left_port_3.getCurrentPosition(), back_right_port_1.getCurrentPosition(), front_right_port_2.getCurrentPosition());
+                //oRobotPosition.Run(back_left_port_3.getCurrentPosition(), back_right_port_1.getCurrentPosition(), front_right_port_2.getCurrentPosition());
 
                 Dynamic_variables();
                 holonomic();
-                servo();
-                slide();
+                //servo();
+                //slide();
                 if (telemtoggle) {
                     telem();
                 }
@@ -76,18 +76,18 @@ public class android_studio_working extends LinearOpMode {
     private void telem() {
         telemetry.addData("Lbumper", gamepad1.dpad_left);
         telemetry.addData("Rbumper", gamepad1.dpad_right);
-        telemetry.addData("clawpos", claw.getPosition());
+        //telemetry.addData("clawpos", claw.getPosition());
         telemetry.addData("X", gamepad1.x);
         telemetry.addData("Y", gamepad1.y);
-        telemetry.addData("slidepower", slide1.getPower());
-        telemetry.addData("Slide1POS", slide1.getCurrentPosition());
+        //telemetry.addData("slidepower", slide1.getPower());
+        //telemetry.addData("Slide1POS", slide1.getCurrentPosition());
         // Configuration file needs to be updated to match where the OW are plugged into the robot.  Now plugged into motor encoder positions.
         telemetry.addData("OW left", Odometry_left);
         telemetry.addData("OW right", Odometry_right);
         telemetry.addData("OW back", Odometry_back);
-        telemetry.addData("X Pos", oRobotPosition.X());
-        telemetry.addData("Y Pos", oRobotPosition.Y());
-        telemetry.addData("Theta", oRobotPosition.Theta());
+        //telemetry.addData("X Pos", oRobotPosition.X());
+        //telemetry.addData("Y Pos", oRobotPosition.Y());
+        //telemetry.addData("Theta", oRobotPosition.Theta());
         telemetry.update();
     }
 
@@ -97,12 +97,12 @@ public class android_studio_working extends LinearOpMode {
     private void initialization() {
         front_right_port_2.setDirection(DcMotorSimple.Direction.REVERSE);
         back_right_port_1.setDirection(DcMotorSimple.Direction.REVERSE);
-        claw.scaleRange(0, 1);
+        //claw.scaleRange(0, 1);
         // getting error when run to position mode is set during initialization, error says position must be set first.
-        slide1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //slide1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // The next block resets the slide encoder to zero.  Make sure the slide is fully down before initializing the program.
-        slide1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        slide1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //slide1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //slide1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         back_left_port_3.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         back_right_port_1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         front_left_port_0.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -113,12 +113,12 @@ public class android_studio_working extends LinearOpMode {
         front_right_port_2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         drive_mode = 1;
         telemtoggle = true;
-        claw.setPosition(0);
+        //claw.setPosition(0);
     }
 
     /**
      * Describe this function...
-     */
+
     private void slide() {
         if (gamepad1.x) {
             // -3500 appears to be full height extension
@@ -159,7 +159,7 @@ public class android_studio_working extends LinearOpMode {
 
     /**
      * Describe this function...
-     */
+
     private void servo() {
         if (gamepad1.left_bumper) {
             claw.setPosition(0);
@@ -168,4 +168,5 @@ public class android_studio_working extends LinearOpMode {
             claw.setPosition(0.6);
         }
     }
+     */
 }
